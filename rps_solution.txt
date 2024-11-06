@@ -1,0 +1,67 @@
+Problem Statement:
+  Make a rock paper scissors JavaScript program, start with writing a function getComputerChoice which returns the initial letter of rock, paper, or scissors whatever is chosen. To get a random value out of the three, make a string "rps" and use a Math.floor and Math.Random to get the string and return it. Create another function named getHumanChoice, ask user to input either rock, paper, or scissors. Return the user choice from getHumanChoice function. Create two variable humanScore and computerScore at global scope, no inside any function created so far, and create another function named playRound which takes two parameters humanChoice and computerChoice, make humanChoice case-insensitive using JavaScript string method and store the initial letter of the user input, use if-else-if to increment the humanScore and computerScore, and log a message whenever the user wins or loses. humanChoice and computerChoice parameters will receive the necessary arguments. To see who is the winner use "best of 5" strategy to see who wins. Create a function playGame and use a for loop to call playRound 5 times, and check the global variables humanScore and computerScore using if-else and log the winner string.
+
+Pseudocode:
+
+FUNCTION getComputerChoice()
+  SET options = "rps"
+  SET randomIndex = Math.floor(Math.random() * 3)
+  SET choice = options[randomIndex]
+  RETURN choice
+END FUNCTION
+
+FUNCTION getHumanChoice()
+  INPUT userOption
+  SET userOption = userOption.toLowerCase()
+  RETURN userOption[0] // Return only the initial letter
+END FUNCTION
+
+SET humanScore = 0
+SET computerScore = 0
+
+FUNCTION playRound(humanChoice, computerChoice)
+  IF humanChoice == computerChoice
+    DISPLAY "It's a tie!"
+  ELSE IF humanChoice == "r"
+    IF computerChoice == "p"
+      SET computerScore = computerScore + 1
+      DISPLAY "You lose! Paper beats Rock"
+    ELSE IF computerChoice == "s"
+      SET humanScore =  humanScore + 1
+      DISPLAY "You win! Rock beats Scissors"
+  ELSE IF humanChoice == "p"
+    IF computerChoice == "s"
+      SET computerScore = computerScore + 1
+      DISPLAY "You lose! Scissors beats Paper"
+    ELSE IF computerChoice == "r"
+      SET humanScore =  humanScore + 1
+      DISPLAY "You win! Paper beats Rock"
+  ELSE IF humanChoice == "s"
+    IF computerChoice == "r"
+      SET computerScore = computerScore + 1
+      DISPLAY "You lose! Rock beats Scissors"
+    ELSE IF computerChoice == "p"
+      SET humanScore =  humanScore + 1
+      DISPLAY "You win! Scissors beats Paper"
+END FUNCTION
+
+FUNCTION playGame()
+  FOR i = 0 TO 5
+    SET humanChoice = getHumanChoice()
+    SET computerChoice = getComputerChoice()
+    CALL playRound(humanChoice, computerChoice)
+  END FOR
+
+  CALL displayWinner()
+END FUNCTION
+
+FUNCTION displayWinner()
+  IF humanScore > computerScore
+    DISPLAY "You won the game! human score: " + humanScore + " computer score: " + computerScore
+  ELSE IF computerScore > humanScore
+    DISPLAY "You lost the game! human score: " + humanScore + " computer score: " + computerScore
+  ELSE
+    DISPLAY "It's a tie! human score: " + humanScore + " computer score: " + computerScore
+END FUNCTION
+
+  
